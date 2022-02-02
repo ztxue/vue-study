@@ -1,28 +1,18 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.webp" alt="">
-    <HelloWorld msg="Welcome to My First Vue App"/>
+    <router-view ></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
-  }
+  components: {}
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "assets/css/reset.css";
+
 </style>

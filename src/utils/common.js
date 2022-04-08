@@ -16,11 +16,3 @@ export function getRequest(parameter, requestUrl) {
         params: parameter,
     });
 }
-
-export function getMap(orgId) {
-    return axios({
-        url: '/robotMapLib/getRobotMapLibList',
-        method: 'post',
-        data: orgId
-    })
-}

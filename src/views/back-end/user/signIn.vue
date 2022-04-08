@@ -11,12 +11,12 @@
                     <div class="_83938fda">
                       <div class="_33c43af5">
                         <div class="e7114814">
-                          <img src="@/assets/images/1.png" class="_489835f0"/>
-                          <img src="@/assets/images/2.png" class="fe2acb34"/>
-                          <img src="@/assets/images/3.png" class="_8fb7c421"/>
+                          <img src="@/assets/images/1.png" class="_489835f0" alt=""/>
+                          <img src="@/assets/images/2.png" class="fe2acb34" alt=""/>
+                          <img src="@/assets/images/3.png" class="_8fb7c421" alt=""/>
                         </div>
                       </div>
-                      <img src="@/assets/images/4.png"/>
+                      <img src="@/assets/images/4.png" alt=""/>
                     </div>
                   </div>
                 </div>
@@ -58,9 +58,9 @@
 </template>
 
 <script>
-import "@/assets/css/login.css";
-import {queryData} from "@/utils/common";
+import "/src/assets/css/login.css"
 import {message} from "ant-design-vue";
+import {login} from "@/services/login/login";
 
 export default {
   data() {
@@ -77,10 +77,10 @@ export default {
         ],
         loginPassword: [
           {required: true, message: '密码不能为空', trigger: 'blur'}
+        ],
+        captcha: [
+          {required: true, message: '验证码不能为空', trigger: 'blur'}
         ]
-        // captcha: [
-        //   {required: true, message: '验证码不能为空', trigger: 'blur'}
-        // ]
       },
       captchaPath: ''
     }
@@ -91,16 +91,14 @@ export default {
   methods: {
     // 提交表单
     loginBeanSubmit() {
-      queryData({
-        'loginName': this.loginBean.loginName,
-        'loginPassword': this.loginBean.loginPassword
-      }, '/login')
+      login(this.loginBean.loginName, this.loginBean.loginPassword)
           .then(response => {
             const params = response.data;
             if (params && params.code === '200') {
               message.loading('加载中...', 1.5)
                   .then(() => {
                     message.success(params.msg, 1, () => {
+                      localStorage.setItem('token', params.data)
                       this.$router.push({path: '/home'})
                     })
                   }).catch(() => {
@@ -115,11 +113,12 @@ export default {
           })
 
     },
-    // // 获取验证码
-    // getCaptcha() {
-    //   this.loginBean.uuid = getUUID()
-    //   this.captchaPath = this.$http.adornUrl(`/captcha.jpg?uuid=${this.loginBean.uuid}`)
-    // }
+    // 获取验证码
+    getCaptcha() {
+      // this.loginBean.uuid = getUUID()
+      this.loginBean.uuid = 666;
+      this.captchaPath = this.$http.adornUrl(`/captcha.jpg?uuid=${this.loginBean.uuid}`)
+    }
   }
 };
 </script>

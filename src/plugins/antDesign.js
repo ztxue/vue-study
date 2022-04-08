@@ -3,9 +3,11 @@ import 'ant-design-vue/dist/antd.css'
 
 
 import {
-
-    Button, Col, Dropdown, Form, Icon, Input, Layout, Menu, Row, Table, Breadcrumb, divider, pagination, tree
+    Button, Col, Dropdown, Form, Icon, Input, Layout, Menu, Row, Table, Breadcrumb, divider, pagination, tree, Card
+    , Avatar, BackTop, Tooltip, Affix, Empty, List, Spin, Drawer
 } from "ant-design-vue";
+//有些小的组件得单独引
+import {PlaceMent} from "ant-design-vue/lib/vc-mentions/src/placement";
 
 const components = [
     Icon,
@@ -21,7 +23,17 @@ const components = [
     Breadcrumb,
     divider,
     pagination,
-    tree
+    tree,
+    Card,
+    Avatar,
+    BackTop,
+    Tooltip,
+    PlaceMent,
+    Affix,
+    Empty,
+    List,
+    Spin,
+    Drawer
 ]
 
 

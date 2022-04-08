@@ -1,7 +1,9 @@
 <template>
 
-  <div class="tableTop">
+  <div >
+    <a-button @click="toExcel">导出Excel</a-button>
     <a-table
+        class="tableTop"
         rowKey="id"
         size="small"
         :columns="columns"
@@ -10,12 +12,11 @@
         scrollToFirstRowOnChange
         :pagination="pagination"
     />
-
   </div>
 
 </template>
 <script>
-import {queryData} from "@/utils/common";
+import {getRequest, queryData} from "@/utils/common";
 import {message} from "ant-design-vue";
 
 //查询列表数据源
@@ -81,6 +82,9 @@ export default {
     }
   },
   methods: {
+    toExcel(){
+      getRequest({},'dept/export')
+    },
     getList() {
       queryData({
         'userName': this.list.userName,
@@ -118,6 +122,6 @@ export default {
 </script>
 <style>
 .tableTop {
-  margin-top: 25px;
+  margin-top: 5px;
 }
 </style>
